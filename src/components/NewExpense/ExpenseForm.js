@@ -3,6 +3,7 @@ import { useState } from "react";
 import './ExpenseForm.css'
 
 const ExpenseForm = (props) => {
+  const [formActive, setFormActive] = useState(false)
   const [enteredTitle, setEnteredTitle] = useState('');
   const [enteredAmount, setEnteredAmount] = useState('');
   const [enteredDate, setEnteredDate] = useState('');
@@ -10,26 +11,6 @@ const ExpenseForm = (props) => {
   const titleChangeHandler = (event) => setEnteredTitle(event.target.value)
   const amountChangeHandler = (event) => setEnteredAmount(event.target.value)
   const dateChangeHandler = (event) => setEnteredDate(event.target.value)
-
-  // const [userInput, setUserInput] = useState({ enteredTitle: '', enteredAmount: '', enteredDate: '' });
-
-  // const titleChangeHandler = (event) => {
-  //   setUserInput((prevState) => { 
-  //     return { ...prevState, enteredTitle: event.target.value }
-  //   })
-  // }
-
-  // const amountChangeHandler = (event) => {
-  //   setUserInput((prevState) => {
-  //     return { ...prevState, enteredAmount: event.target.value }
-  //   })
-  // }
-
-  // const dateChangeHandler = (event) => {
-  //   setUserInput((prevState) => {
-  //     return { ...prevState, enteredDate: event.target.value }
-  //   })
-  // }
 
   const submitHandler = (event) => {
     // Evita que el navegador se recargue
@@ -43,11 +24,20 @@ const ExpenseForm = (props) => {
 
     props.onSaveExpenseData(expenseData);
 
-    setEnteredTitle('');
-    setEnteredAmount('');
-    setEnteredDate('');
+    clearFormHandler()
   }
 
+  const activeFormHandler = () => setFormActive(true)
+  const clearFormHandler = () => {
+    setEnteredTitle('')
+    setEnteredAmount('')
+    setEnteredDate('')
+    setFormActive(false)
+  }
+
+  if (!formActive) {
+    return <button onClick={activeFormHandler}>Add New Expense</button>
+  }
 
   return (
     <form onSubmit={submitHandler}>
@@ -66,6 +56,7 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button type="button" onClick={clearFormHandler}>Cancel</button>
         <button type="sumbit">Add Expense</button>
       </div>
     </form>
@@ -73,3 +64,24 @@ const ExpenseForm = (props) => {
 }
 
 export default ExpenseForm;
+
+
+// const [userInput, setUserInput] = useState({ enteredTitle: '', enteredAmount: '', enteredDate: '' });
+
+// const titleChangeHandler = (event) => {
+//   setUserInput((prevState) => { 
+//     return { ...prevState, enteredTitle: event.target.value }
+//   })
+// }
+
+// const amountChangeHandler = (event) => {
+//   setUserInput((prevState) => {
+//     return { ...prevState, enteredAmount: event.target.value }
+//   })
+// }
+
+// const dateChangeHandler = (event) => {
+//   setUserInput((prevState) => {
+//     return { ...prevState, enteredDate: event.target.value }
+//   })
+// }
