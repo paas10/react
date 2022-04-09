@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import AddUser from './components/Users/AddUser/AddUser';
 
 const Div = styled.div`
   height: 100vh;
@@ -10,7 +11,7 @@ const Div = styled.div`
 function App() {
   return (
     <Div>
-
+      <AddUser />
     </Div>
   );
 }
