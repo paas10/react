@@ -11,6 +11,11 @@ const AddUser = props => {
 
   const submitHandler = (event) => {
     event.preventDefault();
+
+    //Validations
+    if (user.username.trim().length === 0 || user.age.trim().length === 0) return;
+    if (+user.age < 1) return
+
     props.handleSetUsers(user);
     event.target.reset();
   }
