@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import AddUser from './components/Users/AddUser/AddUser';
+import UsersList from './components/Users/UsersList/UsersList';
 
 const Div = styled.div`
   height: 100vh;
@@ -23,6 +24,7 @@ function App() {
   return (
     <Div>
       <AddUser handleSetUsers={handleSetUsers} />
+      { users.length > 0 && <UsersList users={users} /> }
     </Div>
   );
 }
