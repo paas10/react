@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import styled from 'styled-components';
 import AddUser from './components/Users/AddUser/AddUser';
 import UsersList from './components/Users/UsersList/UsersList';
 

@@ -22,7 +22,7 @@ const AddUser = props => {
         <input id='username' type='text' onChange={(event) => user.username = event.target.value}></input>
         <label htmlFor='age'>Age (Years)</label>
         <input id='age' type='number' onChange={(event) => user.age = event.target.value}></input>
-        <Button text='Add User' type='submit' />
+        <Button type='submit'>Add User</Button>
       </form>
     </Card>
   )
