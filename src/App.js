@@ -15,10 +15,10 @@ function App() {
   }
 
   return (
-    <div>
+    <>
       <AddUser handleSetUsers={handleSetUsers} />
       { users.length > 0 && <UsersList users={users} /> }
-    </div>
+    </>
   );
 }
 
