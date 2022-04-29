@@ -3,6 +3,7 @@ import React, { useState, useEffect, useReducer, useContext } from 'react';
 import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
 import Button from '../UI/Button/Button';
+import Input from '../UI/Input/Input';
 import AuthContext from '../../store/auth-context';
 
 const emailReducer = (state, action) => {
@@ -53,6 +54,7 @@ const Login = () => {
       console.log('CLEANUP')
       clearTimeout(identifier);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [emailIsValid, passwordIsValid]) //[emailState.isValid, passwordState.isValid])
 
   const emailChangeHandler = (event) => {
@@ -83,14 +85,8 @@ const Login = () => {
   return (
     <Card className={classes.login}>
       <form onSubmit={submitHandler}>
-        <div className={`${classes.control} ${emailState.isValid === false ? classes.invalid : ''}`}>
-          <label htmlFor="email">E-Mail</label>
-          <input type="email" id="email" value={emailState.value} onChange={emailChangeHandler} onBlur={validateEmailHandler} />
-        </div>
-        <div className={`${classes.control} ${passwordState.isValid === false ? classes.invalid : ''}`}>
-          <label htmlFor="password">Password</label>
-          <input type="password" id="password" value={passwordState.value} onChange={passwordChangeHandler} onBlur={validatePasswordHandler}/>
-        </div>
+        <Input isValid={emailState.isValid} htmlFor='email' label='E-Mail' type='email' id='email' value={emailState.value} onChange={emailChangeHandler} onBlur={validateEmailHandler} />
+        <Input isValid={passwordState.isValid} htmlFor='password' label='Password' type='password' id='password' value={passwordState.value} onChange={passwordChangeHandler} onBlur={validatePasswordHandler} />
         <div className={classes.actions}>
           <Button type="submit" className={classes.btn} disabled={!formIsValid}>
             Login
