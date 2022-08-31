@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 
 import Button from "./components/UI/Button/Button";
 import DemoOutput from "./components/Demo/DemoOutput";
@@ -9,9 +9,10 @@ function App() {
 
   console.log('APP RUNNING')
 
-  const toggelParagraphHandler = () => {
+  // The function will always be the same regardless of whether the component is reevaluated
+  const toggelParagraphHandler = useCallback(() => {
     setShowParagraph(prevShowParagraph => !prevShowParagraph)
-  }
+  }, [])
 
   return (
     <div className="app">
